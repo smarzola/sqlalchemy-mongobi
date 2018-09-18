@@ -3,14 +3,14 @@ sqlalchemy-mongobi
 ==================
 
 
-MongoDB connector for BI dialect for SQLAlchemy.
+MongoDB connector for BI SQLAlchemy dialect.
 
 
 .. image:: https://img.shields.io/pypi/v/sqlalchemy_mongobi.svg
         :target: https://pypi.python.org/pypi/sqlalchemy_mongobi
 
-.. image:: https://img.shields.io/travis/smarzola/sqlalchemy_mongobi.svg
-        :target: https://travis-ci.org/smarzola/sqlalchemy_mongobi
+.. image:: https://img.shields.io/travis/smarzola/sqlalchemy-mongobi.svg
+        :target: https://travis-ci.org/smarzola/sqlalchemy-mongobi
 
 
 MongoDB connector for BI does not have support for transactions but SQLAlchemy DBAPI

@@ -30,12 +30,12 @@ setup(
     license="MIT license",
     long_description=readme,
     include_package_data=True,
-    keywords='sqlalchemy_mongobi',
+    keywords='sqlalchemy mongodb',
     name='sqlalchemy_mongobi',
     packages=find_packages(include=['sqlalchemy_mongobi']),
     test_suite='tests',
-    url='https://github.com/smarzola/sqlalchemy_mongobi',
-    version='0.1.0',
+    url='https://github.com/smarzola/sqlalchemy-mongobi',
+    version='0.1.1',
     zip_safe=False,
     entry_points={
         'sqlalchemy.dialects': [
