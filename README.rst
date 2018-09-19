@@ -22,10 +22,10 @@ DB-API connection per each connection open/close).
 
 Usage
 -----
-The DSN format is similar to that of pymysql::
+The DSN format is similar to that of mysql::
 
     engine = create_engine(
-        "mongobi+pymysql://user?source=auth_db:password@url:port/database",
+        "mongobi://user?source=auth_db:password@url:port/database",
         connect_args={
             "ssl": {
                 "mode": "PREFERRED"
@@ -33,4 +33,18 @@ The DSN format is similar to that of pymysql::
         },
         pool_reset_on_return=False,
     )
+
+
+DBAPI Support
+-------------
+The following DBAPI options are available:
+
+* mysqlclient::
+
+    mongobi+mysqldb://user?source=auth_db:password@url:port/database
+
+
+* PyMySQL::
+
+    mongobi+pymysql://user?source=auth_db:password@url:port/database
 

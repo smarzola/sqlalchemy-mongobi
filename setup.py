@@ -12,7 +12,7 @@ setup(
     author="Simone Marzola",
     author_email='marzolasimone@gmail.com',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
@@ -24,7 +24,6 @@ setup(
     ],
     description="MongoDB connector for BI SQLAlchemy Dialect",
     install_requires=[
-        'pymysql',
         'sqlalchemy',
     ],
     license="MIT license",
@@ -35,12 +34,13 @@ setup(
     packages=find_packages(include=['sqlalchemy_mongobi']),
     test_suite='tests',
     url='https://github.com/smarzola/sqlalchemy-mongobi',
-    version='0.1.1',
+    version='0.2.0',
     zip_safe=False,
     entry_points={
         'sqlalchemy.dialects': [
-            'mongobi = sqlalchemy_mongobi.dialect:MongoBIDialect',
-            'mongobi.pymysql = sqlalchemy_mongobi.dialect:MongoBIDialect',
+            'mongobi = sqlalchemy_mongobi.dialect:MongoBIDialect_mysqldb',
+            'mongobi.mysqldb = sqlalchemy_mongobi.dialect:MongoBIDialect_mysqldb',
+            'mongobi.pymysql = sqlalchemy_mongobi.dialect:MongoBIDialect_pymysql',
         ]
     },
 )

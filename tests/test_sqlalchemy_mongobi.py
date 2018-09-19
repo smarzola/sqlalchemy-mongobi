@@ -9,25 +9,29 @@ from unittest.mock import MagicMock
 
 from sqlalchemy import pool
 
-from sqlalchemy_mongobi.dialect import MongoBIDialect
+from sqlalchemy_mongobi.dialect import MongoBIDialect_mysqldb
+from sqlalchemy_mongobi.dialect import MongoBIDialect_pymysql
 
 
 class TestSqlalchemyMongoBI(unittest.TestCase):
     """Tests for `sqlalchemy_mongobi` package."""
 
     def setUp(self):
-        self.dialect = MongoBIDialect()
+        self.dialects = (MongoBIDialect_mysqldb(), MongoBIDialect_pymysql())
 
     def test_pool_class(self):
-        pool_class = self.dialect.get_pool_class('any://url')
-        self.assertEqual(pool.NullPool, pool_class)
+        for dialect in self.dialects:
+            pool_class = dialect.get_pool_class('any://url')
+            self.assertEqual(pool.NullPool, pool_class)
 
     def test_ignore_rollback(self):
-        dbapi_connection = MagicMock()
-        self.dialect.do_rollback(dbapi_connection)
-        dbapi_connection.rollback.assert_not_called()
+        for dialect in self.dialects:
+            dbapi_connection = MagicMock()
+            dialect.do_rollback(dbapi_connection)
+            dbapi_connection.rollback.assert_not_called()
 
     def test_ignore_commit(self):
-        dbapi_connection = MagicMock()
-        self.dialect.do_rollback(dbapi_connection)
-        dbapi_connection.commit.assert_not_called()
+        for dialect in self.dialects:
+            dbapi_connection = MagicMock()
+            dialect.do_commit(dbapi_connection)
+            dbapi_connection.commit.assert_not_called()
