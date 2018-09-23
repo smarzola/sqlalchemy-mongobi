@@ -34,7 +34,7 @@ setup(
     packages=find_packages(include=['sqlalchemy_mongobi']),
     test_suite='tests',
     url='https://github.com/smarzola/sqlalchemy-mongobi',
-    version='0.2.0',
+    version='0.2.1',
     zip_safe=False,
     entry_points={
         'sqlalchemy.dialects': [
