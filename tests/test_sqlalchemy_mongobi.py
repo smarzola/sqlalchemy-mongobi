@@ -35,3 +35,8 @@ class TestSqlalchemyMongoBI(unittest.TestCase):
             dbapi_connection = MagicMock()
             dialect.do_commit(dbapi_connection)
             dbapi_connection.commit.assert_not_called()
+
+    def test_get_isolation_level(self):
+        for dialect in self.dialects:
+            isolation_level = dialect.get_isolation_level(MagicMock())
+            self.assertEqual("REPEATABLE READ", isolation_level)

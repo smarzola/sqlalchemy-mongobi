@@ -3,7 +3,7 @@ from sqlalchemy.dialects.mysql.mysqldb import MySQLDialect_mysqldb
 from sqlalchemy.dialects.mysql.pymysql import MySQLDialect_pymysql
 
 
-class MongoBIDialect_mysqldb(MySQLDialect_mysqldb):
+class MongoBIDialectMixin:
     name = 'mongobi'
 
     @classmethod
@@ -18,18 +18,13 @@ class MongoBIDialect_mysqldb(MySQLDialect_mysqldb):
         """Execute a ROLLBACK."""
         return
 
+    def get_isolation_level(self, connection):
+        return "REPEATABLE READ"
 
-class MongoBIDialect_pymysql(MySQLDialect_pymysql):
-    name = 'mongobi'
 
-    @classmethod
-    def get_pool_class(cls, url):
-        return pool.NullPool
+class MongoBIDialect_mysqldb(MongoBIDialectMixin, MySQLDialect_mysqldb):
+    pass
 
-    def do_commit(self, dbapi_connection):
-        """Execute a COMMIT."""
-        return
 
-    def do_rollback(self, dbapi_connection):
-        """Execute a ROLLBACK."""
-        return
+class MongoBIDialect_pymysql(MongoBIDialectMixin, MySQLDialect_pymysql):
+    pass
